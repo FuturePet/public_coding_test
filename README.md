@@ -1,21 +1,5 @@
 # GoFetch Coding Test
 
-# Manual Install
-
-## Requirements
-
-1. Elixir, [Installation Instructions](https://elixir-lang.org/install.html)
-2. After Elixir is installed, run `mix local.hex` to install hex
-
-## To start the Phoenix server:
-
-- Install dependencies with `mix deps.get`
-- Create and migrate your database with `mix ecto.setup`
-- Install Node.js dependencies with `yarn install`
-- Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
 # Replit Install
 
 Run the repl.it to get started!
