@@ -16,5 +16,5 @@ export const AppointmentList (props) => {
           </span>
         </div>
     ))}
-  );
+  ); 
 }
