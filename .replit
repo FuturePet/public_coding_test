@@ -1,0 +1,2 @@
+bnlanguage = "elixir"
+run = "mix local.hex --force && mix local.rebar --force && mix deps.get && mix ecto.drop && mix ecto.setup && yarn install && iex -S mix phx.server"

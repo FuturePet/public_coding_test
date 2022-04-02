@@ -3,6 +3,7 @@ defmodule GoFetchWeb.Resolvers.Application do
   GraphQL Resolvers
   """
 
+  alias GoFetch.Repo
   alias GoFetch.Appointment
   alias GoFetch.Doctor
 
@@ -11,6 +12,6 @@ defmodule GoFetchWeb.Resolvers.Application do
   end
 
   def list_appointments_by_date(_, args, _) do
-    {:ok, Appointment.get_appointments_by_date(args)}
+    {:ok, Repo.all(Appointment.get_appointments_by_date(args))}
   end
 end

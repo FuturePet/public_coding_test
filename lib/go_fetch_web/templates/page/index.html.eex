@@ -1,1 +1,2 @@
+<!-- I would definitely not serve this file from the API server. Should be static asset. Would introduce nginx docker container to handle static (frontend) & proxy API requests to API server. Not sure how Replit would handle that, so I'm going to leave it. --> 
 <div id="react-app"></div>
