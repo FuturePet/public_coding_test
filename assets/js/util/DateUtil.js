@@ -4,7 +4,7 @@ export default class DateUtil {
   // ==========================================================================
 	// Moment.js date format strings 
 	// ==========================================================================
-  static momentFormatAppointmentDate = "L [at] h:m a"
+  static momentFormatAppointmentDate = "L [at] h:mm a"
 
   // ==========================================================================
 	// Class Methods
