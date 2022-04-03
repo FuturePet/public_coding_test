@@ -9,15 +9,25 @@ export default class AppointmentService {
 	// ==========================================================================
 
   /**
-  ** Get appointmetns in the given date range 
+  ** search appointments
   ** @param startDate - the start of the date range 
   ** @param endDate - the end of the date rane 
-  ** @return list of appointments within the date range 
+  ** @param doctorId - [optional] limit results to only appointments with the 
+  **                   specified doctor
+  ** @return hash {appointments: the appointment list,
+  **               loading: true / false}
   **/
-  static getAppointmentsInDateRange(startDate, endDate) {
+  static searchAppointments(startDate, endDate, doctorId = null) {
     const appointmentResults = useQuery(AppointmentGql.LIST, 
-                                        {variables: { startDate, endDate }});
-    return (new GqlAppointmentToAppointmentConverter())
-      .convertList(appointmentResults?.data?.appointments)
+                                        {variables: {
+                                          startDate,
+                                          endDate,
+                                          doctorId,
+                                        }});
+    return {
+      appointments: (new GqlAppointmentToAppointmentConverter())
+      .convertList(appointmentResults?.data?.appointments),
+      loading: appointmentResults.loading
+    }
   }
 }

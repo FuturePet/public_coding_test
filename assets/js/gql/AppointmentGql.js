@@ -7,8 +7,8 @@ export default class AppointmentGql {
 	// ==========================================================================
   
   static LIST = gql`
-    query ListAppointments($startDate: String!, $endDate: String!) {
-      appointments(startDate: $startDate, endDate: $endDate) {
+    query ListAppointments($startDate: String!, $endDate: String!, $doctorId: String) {
+      appointments(startDate: $startDate, endDate: $endDate, doctorId: $doctorId) {
         id
         reason
         date

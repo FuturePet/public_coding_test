@@ -51,4 +51,35 @@ defmodule GoFetch.AppointmentTest do
       assert appointment.date == valid_appointment.date
     end
   end
+
+  describe "where_doctor/1" do
+    test "Only returns appointments assigned to the specified doctor" do
+      fake_doc_1 = insert(:doctor, %{first_name: "fake1"})
+      fake_doc_2 = insert(:doctor, %{first_name: "fake2"})
+
+      insert(:appointment, %{doctor: fake_doc_1})
+      insert(:appointment, %{doctor: fake_doc_1})
+      insert(:appointment, %{doctor: fake_doc_2})
+
+      # At my current job this is what we call testint the ORM. Generally we 
+      # wouldn't write unit tests for simple ORM logic. I'm not sure 
+      # what you would prefer so I added this little guy :) 
+      appointments = Repo.all(Appointment.where_doctor(fake_doc_2.id))
+
+      assert length(appointments) == 1
+    end 
+
+    test "Filter has no effect when doctor_id nil" do 
+      fake_doc_1 = insert(:doctor, %{first_name: "fake1"})
+      fake_doc_2 = insert(:doctor, %{first_name: "fake2"})
+
+      insert(:appointment, %{doctor: fake_doc_1})
+      insert(:appointment, %{doctor: fake_doc_1})
+      insert(:appointment, %{doctor: fake_doc_2})
+
+      appointments = Repo.all(Appointment.where_doctor(nil))
+
+      assert length(appointments) == 3
+    end 
+  end 
 end

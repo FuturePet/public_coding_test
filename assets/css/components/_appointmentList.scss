@@ -1,0 +1,24 @@
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 8px 16px;
+  
+  .appointment {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 12px;
+
+    cursor: pointer;
+    transition: transform .5s;
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    .appointment-date {
+      margin-right: 5px;
+    }
+
+  }
+}

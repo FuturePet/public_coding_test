@@ -10,11 +10,18 @@ export default class DoctorService {
 	// ==========================================================================
 
   /** get all doctors in the system.
-  **  @return a list of all docotors in the system
+  **  @return hash {
+  **     doctors: list of doctors 
+  **     loading: true / false are doctors still loading}
   **/ 
   static getAllDoctors() {
-    return (new GqlDoctorToDoctorConverter())
-      .convertList(useQuery(DoctorGql.LIST)?.data?.doctors)
+    const doctorResults = useQuery(DoctorGql.LIST);
+    
+    return {
+      doctors: (new GqlDoctorToDoctorConverter())
+        .convertList(doctorResults.data?.doctors),
+      loading: doctorResults.loading,
+    }
   }
   
 }
