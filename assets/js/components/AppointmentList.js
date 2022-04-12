@@ -1,7 +1,13 @@
 import React from "react";
 import AppointmentService from "../service/AppointmentService"
 import DateUtil from "../util/DateUtil";
- 
+
+/**
+** A list of patient appointments.
+** @prop startDate - only show appointments after or equal to this date
+** @prop endDate - only show appointments before or equal to this date
+** @prop doctorId - [optional] if provided only show appointments for this doctor
+**/
 export const AppointmentList = (props) => {
   const {appointments, loading} = AppointmentService
     .searchAppointments(props.startDate, props.endDate, props.doctorId);

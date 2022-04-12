@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+** Dropdown list 
+** @prop options - a list of options that provide .id and .label fields 
+** @prop value - the currently selected option .id
+**/
 export const Dropdown = (props) => {
 
   if (!props.options || props.options.length === 0) {
