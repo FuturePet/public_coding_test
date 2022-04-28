@@ -5,7 +5,8 @@ defmodule GoFetch.Factory do
 
   use ExMachina.Ecto, repo: GoFetch.Repo
 
-  alias GoFetch.{Appointment, Doctor, Pet, User}
+  alias GoFetch.Account.User
+  alias GoFetch.Clinic.{Appointment, Doctor, Pet}
 
   def user_factory do
     %User{

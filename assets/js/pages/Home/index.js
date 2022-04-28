@@ -1,7 +1,10 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
 
-import "../css/app.scss";
+import { useState } from "react";
+import { useQuery, gql } from "@apollo/client";
+import AppointmentCard from "../../components/Appointment";
+
+import './style.scss';
 
 const LIST_APPOINTMENTS = gql`
   query ListAppointments($startDate: String!, $endDate: String!) {
@@ -59,26 +62,37 @@ const endDate = getEndOfWeek(new Date());
  * 3. Make any improvements to the code you can
  */
 const Home = () => {
+  const [selectedDoctorId, setSelectedDoctorId] = useState('');
   const appointmentResult = useQuery(LIST_APPOINTMENTS, {
-    variables: { startDate, endDate },
+    variables: { startDate, endDate }
   });
   const doctorResult = useQuery(LIST_DOCTORS);
 
+  const handleChangeDoctor = (doctorId) => {
+    setSelectedDoctorId(doctorId)
+  }
+
+  if(doctorResult.loading || appointmentResult.loading) return (<p> Loading... </p>)
+
   return (
-    <div className="app">
+    <div className="Home">
       <h1>This Week's Appointments</h1>
-      <select>
+      <select
+        className="FormSelect"
+        value={selectedDoctorId}
+        onChange={e => handleChangeDoctor(e.target.value)}>
+        <option value=''>(All)</option>
         {doctorResult?.data?.doctors?.map((doctor) => (
-          <option value={doctor.id}>Dr. {doctor.lastName}</option>
+          <option key={doctor.id} value={doctor.id}>Dr. {doctor.lastName}</option>
         ))}
       </select>
-      {appointmentResult?.data?.appointments?.map((appointment) => (
-        <div className="appointment">
-          <span className="appointment-date">{appointment.date}</span>
-          <span>
-            {appointment.pet.name} with Dr. {appointment.doctor.lastName}{" "}
-          </span>
-        </div>
+      {appointmentResult?.data?.appointments?.filter((appointment) => {
+        if (selectedDoctorId) return appointment.doctor.id == selectedDoctorId;
+        return true;
+      })
+      .sort((a, b) => a.date > b.date ? 1 : -1)
+      .map((appointment) => (
+        <AppointmentCard key={appointment.id} appointment={appointment} />
       ))}
     </div>
   );

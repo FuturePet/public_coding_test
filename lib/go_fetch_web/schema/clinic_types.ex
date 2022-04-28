@@ -1,21 +1,22 @@
-defmodule GoFetchWeb.Schema.AppointmentTypes do
+defmodule GoFetchWeb.Schema.ClinicTypes do
   @moduledoc """
-  The Absinthe Schema types.
+  The Absinthe Schema Clinic types.
   """
   use Absinthe.Schema.Notation
   import Absinthe.Resolution.Helpers
 
   alias GoFetch.Controller
+  alias GoFetchWeb.Resolvers.Clinic
 
-  object :application_queries do
+  object :clinic_queries do
     field :doctors, list_of(:doctor) do
-      resolve(&GoFetchWeb.Resolvers.Application.list_doctors/3)
+      resolve(&Clinic.list_doctors/3)
     end
 
     field :appointments, list_of(:appointment) do
       arg(:start_date, non_null(:string))
       arg(:end_date, non_null(:string))
-      resolve(&GoFetchWeb.Resolvers.Application.list_appointments_by_date/3)
+      resolve(&Clinic.list_appointments_by_date/3)
     end
   end
 
@@ -27,16 +28,6 @@ defmodule GoFetchWeb.Schema.AppointmentTypes do
     field :user, :user, resolve: dataloader(Controller)
     field :pet, :pet, resolve: dataloader(Controller)
     field :doctor, :doctor, resolve: dataloader(Controller)
-  end
-
-  object :user do
-    field :id, :id
-    field :name, :string
-    field :email, :string
-
-    field :pets, list_of(:pet) do
-      resolve(dataloader(Controller, :pets))
-    end
   end
 
   object :pet do

@@ -7,13 +7,14 @@ defmodule GoFetchWeb.Schema do
 
   alias GoFetch.Controller
 
-  import_types(GoFetchWeb.Schema.AppointmentTypes)
+  import_types(GoFetchWeb.Schema.AccountTypes)
+  import_types(GoFetchWeb.Schema.ClinicTypes)
 
   import_types(Absinthe.Type.Custom)
   import_types(Absinthe.Plug.Types)
 
   query do
-    import_fields(:application_queries)
+    import_fields(:clinic_queries)
   end
 
   def context(ctx) do

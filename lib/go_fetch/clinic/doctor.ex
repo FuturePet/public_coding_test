@@ -1,21 +1,13 @@
-defmodule GoFetch.Doctor do
+defmodule GoFetch.Clinic.Doctor do
   @moduledoc """
-   the doctor schema
+  The doctor schema
   """
 
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query
 
-  alias GoFetch.Appointment
+  alias GoFetch.Clinic.Appointment
   alias GoFetch.Repo
-
-  @doc """
-  Get all doctors
-  """
-  def get_doctors() do
-    Repo.all(__MODULE__)
-  end
 
   schema "doctors" do
     field :first_name, :string
@@ -31,5 +23,12 @@ defmodule GoFetch.Doctor do
     doctor
     |> cast(attrs, [:first_name, :last_name], empty_values: [])
     |> validate_required([:first_name, :last_name])
+  end
+
+  @doc """
+  Get all doctors
+  """
+  def get_all_doctors() do
+    Repo.all(__MODULE__)
   end
 end

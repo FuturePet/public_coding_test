@@ -1,8 +1,10 @@
 defmodule GoFetch.AppointmentTest do
   use ExUnit.Case
-  alias GoFetch.Appointment
+  alias GoFetch.Clinic.Appointment
 
   import GoFetch.Factory
+
+  @two_days_in_miliseconds 172_800
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(GoFetch.Repo)
@@ -15,7 +17,7 @@ defmodule GoFetch.AppointmentTest do
       valid_appointment = insert(:appointment, %{date: Faker.DateTime.forward(2)})
 
       start_date = DateTime.utc_now()
-      end_date = DateTime.add(start_date, 172_800)
+      end_date = DateTime.add(start_date, @two_days_in_miliseconds)
 
       appointments =
         Appointment.get_appointments_by_date(%{
@@ -26,6 +28,10 @@ defmodule GoFetch.AppointmentTest do
       assert length(appointments) == 1
       [appointment] = appointments
       assert appointment.date == valid_appointment.date
+
+      assert appointment.id == valid_appointment.id
+      refute appointment.id == past_appointment.id
+      refute appointment.id == future_appointment.id
     end
   end
 end

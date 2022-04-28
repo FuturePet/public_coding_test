@@ -4,7 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ApolloClient, ApolloProvider } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
-import Home from "./Home";
+import Home from "./pages/Home";
 
 const client = new ApolloClient({
   uri: "/api",

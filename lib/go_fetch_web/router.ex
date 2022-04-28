@@ -22,7 +22,7 @@ defmodule GoFetchWeb.Router do
   scope "/", GoFetchWeb do
     pipe_through :browser
 
-    get "/*path", PageController, :index
+    get "/", PageController, :index
   end
 
   # Enables LiveDashboard only for development
