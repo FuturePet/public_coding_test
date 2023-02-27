@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :go_fetch, GoFetch.Repo, adapter: Ecto.Adapters.SQLite3

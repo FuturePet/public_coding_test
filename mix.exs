@@ -10,7 +10,14 @@ defmodule GoFetch.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -52,7 +59,8 @@ defmodule GoFetch.MixProject do
       {:absinthe, "~> 1.6.0", override: true},
       {:absinthe_plug, "~> 1.5.0-alpha.0"},
       {:absinthe_ecto, ">= 0.0.0"},
-      {:dataloader, "~> 1.0.2"}
+      {:dataloader, "~> 1.0.2"},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

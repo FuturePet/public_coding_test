@@ -58,8 +58,15 @@ This is a set of base changes we'd like to see. There are a lot of ways you coul
 If you're stuck thinking about what kinds of improvements you could make, consider our code structure, accessibility, security, etc. You can leave improvements as `TODO`s if you have clear & explicit ideas of what you'd change.
 
 ### Testing
+This applicaiton is 100% tested! 📉
 
-- Run `mix test` to check against the unit test for `get_appointments_by_date/1` filtering. Feel free to add more tests!
+Run
+
+- `mix test` to check tests.
+
+or
+
+- `mix coveralls.html` for fully coverage report!
 
 ### Relevant Files
 

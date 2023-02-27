@@ -15,6 +15,7 @@ defmodule GoFetchWeb.Schema.AppointmentTypes do
     field :appointments, list_of(:appointment) do
       arg(:start_date, non_null(:string))
       arg(:end_date, non_null(:string))
+      arg(:doctor_last_name, non_null(:string))
       resolve(&GoFetchWeb.Resolvers.Application.list_appointments_by_date/3)
     end
   end

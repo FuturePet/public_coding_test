@@ -1,0 +1,22 @@
+{
+  "skip_files": [
+    "lib/go_fetch/application.ex",
+    "lib/go_fetch/release.ex",
+    "lib/go_fetch_web.ex",
+    "lib/go_fetch_web/views/error_helpers.ex",
+    "lib/go_fetch_web/live/page_live.ex",
+    "lib/go_fetch_web/channels/user_socket.ex",
+    "lib/go_fetch_web/views/error_view.ex",
+    "test/support/channel_case.ex",
+    "test/support/appointments_fixture.ex",
+    "test/support/data_case.ex",
+    "lib/go_fetch_web/telemetry.ex",
+    "test/support/conn_case.ex",
+    "deps/"
+  ],
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true,
+    "output_dir": "cover/",
+    "minimum_coverage": 95
+  }
+}
