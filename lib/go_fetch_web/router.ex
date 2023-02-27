@@ -8,13 +8,9 @@ defmodule GoFetchWeb.Router do
     plug :protect_from_forgery
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   # Other scopes may use custom stacks.
   scope "/api" do
-    forward("/graphiql", Absinthe.Plug.GraphiQL, schema: GoFetchWeb.Schema)
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GoFetchWeb.Schema
 
     forward "/", Absinthe.Plug, schema: GoFetchWeb.Schema, log_level: :info
   end
@@ -32,12 +28,12 @@ defmodule GoFetchWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  # if Mix.env() in [:dev, :test] do
+  #   import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: GoFetchWeb.Telemetry
-    end
-  end
+  #   scope "/" do
+  #     pipe_through :browser
+  #     live_dashboard "/dashboard", metrics: GoFetchWeb.Telemetry
+  #   end
+  # end
 end
